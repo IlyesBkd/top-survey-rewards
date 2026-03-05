@@ -4,6 +4,7 @@ import Script from "next/script";
 import type { ReactNode } from "react";
 
 import "./globals.css";
+import { PostHogProvider } from "./providers/PostHogProvider";
 
 const bodyFont = Source_Sans_3({
   subsets: ["latin"],
@@ -43,7 +44,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             gtag('config', 'AW-17979730701');
           `}
         </Script>
-        {children}
+        <PostHogProvider>{children}</PostHogProvider>
       </body>
     </html>
   );

@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import ConversionButton from "./components/ConversionButton";
 import { Star, ShieldCheck, TrendingUp } from "lucide-react";
+import { usePostHog } from "posthog-js/react";
 
 const introParagraphs = [
   "Making money online is no longer a pipe dream. Millions of Americans earn extra cash every month simply by sharing their opinions through paid survey sites. The key is knowing which platforms are legitimate and which ones are a waste of your time.",
@@ -115,6 +118,14 @@ function RatingStars({ rating }: { rating: number }) {
 }
 
 function SiteCard({ site }: { site: Site }) {
+  const posthog = usePostHog();
+
+  const handleImageClick = (offerName: string) => {
+    posthog.capture('image_clicked', {
+      offer_name: offerName,
+    });
+  };
+
   return (
     <article
       className={`relative rounded-2xl md:rounded-[32px] border bg-white p-4 sm:p-6 md:p-10 shadow-[0_18px_40px_rgba(15,23,42,0.12)] ${
@@ -143,13 +154,18 @@ function SiteCard({ site }: { site: Site }) {
             <span className="flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-xl sm:text-2xl font-bold text-zinc-600">
               #{site.rank}
             </span>
-            <Image
-              src={site.logo}
-              alt={`${site.name} logo`}
-              width={280}
-              height={84}
-              className="h-20 sm:h-24 md:h-28 w-auto max-w-[140px] sm:max-w-[180px] object-contain"
-            />
+            <div 
+              onClick={() => handleImageClick(site.name.toLowerCase().replace(/\s+/g, ''))}
+              className="cursor-pointer"
+            >
+              <Image
+                src={site.logo}
+                alt={`${site.name} logo`}
+                width={280}
+                height={84}
+                className="h-20 sm:h-24 md:h-28 w-auto max-w-[140px] sm:max-w-[180px] object-contain"
+              />
+            </div>
           </div>
           <div className="flex flex-col items-center sm:items-end gap-1 shrink-0">
             <RatingStars rating={site.rating} />
@@ -160,7 +176,10 @@ function SiteCard({ site }: { site: Site }) {
         </div>
 
         <div className="mt-5 sm:mt-8 grid grid-cols-1 gap-5 sm:gap-8 md:grid-cols-[1.1fr_1fr] md:items-start">
-          <div className="flex items-center justify-center overflow-hidden rounded-xl md:rounded-2xl border border-zinc-100 shadow-sm bg-zinc-50 p-3">
+          <div 
+            onClick={() => handleImageClick(site.name.toLowerCase().replace(/\s+/g, ''))}
+            className="flex items-center justify-center overflow-hidden rounded-xl md:rounded-2xl border border-zinc-100 shadow-sm bg-zinc-50 p-3 cursor-pointer hover:border-zinc-200 transition"
+          >
             <Image
               src={site.interfaceImage}
               alt={`${site.name} dashboard interface`}
@@ -214,6 +233,8 @@ function SiteCard({ site }: { site: Site }) {
             url={site.url}
             isPrimary={site.isPrimary}
             trackConversion={site.isPrimary}
+            offerName={site.name.toLowerCase().replace(/\s+/g, '')}
+            position={`rank_${site.rank}`}
           >
             {site.ctaText}
           </ConversionButton>

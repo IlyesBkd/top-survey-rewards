@@ -1,12 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import { usePostHog } from "posthog-js/react";
 
 interface ConversionButtonProps {
   url: string;
   isPrimary?: boolean;
   trackConversion?: boolean;
   children: React.ReactNode;
+  offerName?: string;
+  position?: string;
 }
 
 declare global {
@@ -29,12 +32,23 @@ export default function ConversionButton({
   isPrimary = false,
   trackConversion = false,
   children,
+  offerName,
+  position,
 }: ConversionButtonProps) {
   const [isTracking, setIsTracking] = useState(false);
+  const posthog = usePostHog();
 
   const trackOutboundClick = (targetUrl: string) => {
     if (isTracking) return;
     setIsTracking(true);
+
+    // Track CTA click with PostHog
+    if (offerName && position) {
+      posthog.capture('cta_button_clicked', {
+        offer_name: offerName,
+        position: position,
+      });
+    }
 
     let hasRedirected = false;
 
