@@ -18,8 +18,8 @@ const headingFont = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "5 Meilleurs Vidéoprojecteurs Testés 2026 - AVIS CONSO",
-  description: "Nous avons testé plus de 30 modèles pour identifier les 5 meilleurs vidéoprojecteurs de 2026. Guide d'achat complet avec avis d'experts et comparatifs.",
+  title: "The 3 Best Paid Survey Sites Tested in 2026 - TopSurveyRewards",
+  description: "We tested over 15 survey panels to identify the 3 best platforms to earn extra cash in your spare time. Independent reviews, honest ratings.",
   icons: {
     icon: "/favicon.ico",
   },
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="fr">
+    <html lang="en">
       <body
         className={`${bodyFont.variable} ${headingFont.variable} bg-white font-body text-zinc-900 antialiased`}
       >
