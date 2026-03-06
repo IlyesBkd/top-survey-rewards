@@ -45,7 +45,7 @@ const sites = [
       "SurveyJunkie is the undisputed leader among paid survey platforms in 2026. The interface is incredibly clean and intuitive, making it easy to find and complete surveys in minutes. Their mobile app is excellent, letting you earn on the go during commutes or downtime. Best of all, you can cash out as soon as you hit just $5 in earnings -- a threshold most competitors can't match. If you only sign up for one survey site, make it this one.",
     ctaText: "VISIT OFFICIAL SITE",
     socialProof: "⭐ Trusted by over 20+ million members worldwide. Payouts processed within 24 hours.",
-    url: "",
+    url: "https://k7xlm.bemobtrcks.com/click/1?ns=c%3Dd6380a30-9c5a-4296-82bf-518555e9938e..l%3D2..a%3D0..b%3D0",
     isPrimary: true,
   },
   {
@@ -69,7 +69,7 @@ const sites = [
       "Nielsen isn't your typical survey site -- it's a market research app that pays you passively just for keeping it installed on your devices. You don't need to answer questions or fill out forms. Simply install the app on your phone or computer, and Nielsen collects anonymous usage data in the background. In return, you earn points redeemable for gift cards and get entered into monthly $10,000 sweepstakes. It's the perfect complement to an active survey site like SurveyJunkie.",
     ctaText: "VISIT OFFICIAL SITE",
     socialProof: "🔒 Backed by a 90-year-old market research giant. 100% safe and secure.",
-    url: "",
+    url: "https://k7xlm.bemobtrcks.com/click/2?ns=c%3Dd6380a30-9c5a-4296-82bf-518555e9938e..l%3D2..a%3D0..b%3D0",
     isPrimary: false,
   },
   {
@@ -89,7 +89,7 @@ const sites = [
       "InboxDollars is a fun and engaging platform that pays you real cash -- not points -- for reading emails, watching videos, playing games, and completing surveys. The instant $5 signup bonus is a nice touch that gets you started right away. The only downside is the $15 minimum payout, which means you'll need a bit of patience before your first withdrawal. That said, the variety of earning methods keeps things interesting and makes it easy to hit that threshold faster than you'd expect.",
     ctaText: "VISIT OFFICIAL SITE",
     socialProof: "💵 Over $80 million in cash rewards paid to members since 2000.",
-    url: "",
+    url: "https://k7xlm.bemobtrcks.com/click/3?ns=c%3Dd6380a30-9c5a-4296-82bf-518555e9938e..l%3D2..a%3D0..b%3D0",
     isPrimary: false,
   },
 ];
@@ -120,7 +120,7 @@ function RatingStars({ rating }: { rating: number }) {
 function SiteCard({ site }: { site: Site }) {
   const posthog = usePostHog();
 
-  const handleImageClick = (offerName: string) => {
+  const handleImageClick = (offerName: string, e: React.MouseEvent) => {
     posthog.capture('image_clicked', {
       offer_name: offerName,
     });
@@ -154,8 +154,11 @@ function SiteCard({ site }: { site: Site }) {
             <span className="flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-xl sm:text-2xl font-bold text-zinc-600">
               #{site.rank}
             </span>
-            <div 
-              onClick={() => handleImageClick(site.name.toLowerCase().replace(/\s+/g, ''))}
+            <a 
+              href={site.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => handleImageClick(site.name.toLowerCase().replace(/\s+/g, ''), e)}
               className="cursor-pointer"
             >
               <Image
@@ -165,7 +168,7 @@ function SiteCard({ site }: { site: Site }) {
                 height={84}
                 className="h-20 sm:h-24 md:h-28 w-auto max-w-[140px] sm:max-w-[180px] object-contain"
               />
-            </div>
+            </a>
           </div>
           <div className="flex flex-col items-center sm:items-end gap-1 shrink-0">
             <RatingStars rating={site.rating} />
@@ -176,8 +179,11 @@ function SiteCard({ site }: { site: Site }) {
         </div>
 
         <div className="mt-5 sm:mt-8 grid grid-cols-1 gap-5 sm:gap-8 md:grid-cols-[1.1fr_1fr] md:items-start">
-          <div 
-            onClick={() => handleImageClick(site.name.toLowerCase().replace(/\s+/g, ''))}
+          <a 
+            href={site.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => handleImageClick(site.name.toLowerCase().replace(/\s+/g, ''), e)}
             className="flex items-center justify-center overflow-hidden rounded-xl md:rounded-2xl border border-zinc-100 shadow-sm bg-zinc-50 p-3 cursor-pointer hover:border-zinc-200 transition"
           >
             <Image
@@ -187,7 +193,7 @@ function SiteCard({ site }: { site: Site }) {
               height={400}
               className="w-full h-auto max-h-[250px] sm:max-h-[280px] object-contain"
             />
-          </div>
+          </a>
 
           <div className="grid grid-cols-1 gap-3 sm:gap-4">
             <div className="rounded-xl md:rounded-2xl bg-emerald-50 p-3 sm:p-4">
