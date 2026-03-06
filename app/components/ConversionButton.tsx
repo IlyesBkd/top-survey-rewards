@@ -67,11 +67,7 @@ export default function ConversionButton({
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleClick}
-      className={`relative rounded-xl px-6 sm:px-8 py-4 sm:py-5 text-center font-extrabold uppercase tracking-wider text-white shadow-[0_4px_14px_0_rgba(0,0,0,0.25)] transition-all duration-200 w-full overflow-hidden inline-block ${
-        isPrimary
-          ? "bg-gradient-to-br from-emerald-600 via-emerald-700 to-emerald-800 hover:shadow-[0_6px_20px_0_rgba(5,150,105,0.4)] hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[0_2px_8px_0_rgba(0,0,0,0.2)] text-base sm:text-lg md:text-xl"
-          : "bg-gradient-to-br from-blue-800 via-blue-900 to-slate-900 hover:shadow-[0_6px_20px_0_rgba(30,58,138,0.4)] hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[0_2px_8px_0_rgba(0,0,0,0.2)] text-sm sm:text-base"
-      } before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/20 before:to-transparent before:pointer-events-none`}
+      className="relative rounded-xl px-6 sm:px-8 py-4 sm:py-5 text-center font-extrabold uppercase tracking-wider text-white shadow-[0_4px_14px_0_rgba(0,0,0,0.25)] transition-all duration-200 w-full overflow-hidden inline-block bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 hover:shadow-[0_6px_20px_0_rgba(249,115,22,0.5)] hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[0_2px_8px_0_rgba(0,0,0,0.2)] text-base sm:text-lg md:text-xl before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/20 before:to-transparent before:pointer-events-none"
       style={{
         letterSpacing: '0.05em',
       }}

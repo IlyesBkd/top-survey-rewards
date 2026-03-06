@@ -7,8 +7,7 @@ import { usePostHog } from "posthog-js/react";
 
 const introParagraphs = [
   "Making money online is no longer a pipe dream. Millions of Americans earn extra cash every month simply by sharing their opinions through paid survey sites. The key is knowing which platforms are legitimate and which ones are a waste of your time.",
-  "The problem? There are hundreds of survey sites out there, and most of them either pay pennies, have unreachable payout thresholds, or are outright scams designed to harvest your data. We did the hard work so you don't have to.",
-  "Our team personally tested over 15 survey panels over the past 6 months. We ranked them based on three core criteria: ease of use, payout threshold (how fast you can cash out), and how frequently new surveys are available. Here are the 3 clear winners for 2026.",
+  "The problem? There are hundreds of survey sites out there, and most of them either pay pennies, have unreachable payout thresholds, or are outright scams. We tested over 15 survey panels over the past 6 months based on ease of use, payout threshold, and survey availability. Here are the 3 clear winners for 2026.",
 ];
 
 const lookForList = [
@@ -43,7 +42,7 @@ const sites = [
     disadvantages: ["You might not qualify for every survey"],
     expertReview:
       "SurveyJunkie is the undisputed leader among paid survey platforms in 2026. The interface is incredibly clean and intuitive, making it easy to find and complete surveys in minutes. Their mobile app is excellent, letting you earn on the go during commutes or downtime. Best of all, you can cash out as soon as you hit just $5 in earnings -- a threshold most competitors can't match. If you only sign up for one survey site, make it this one.",
-    ctaText: "VISIT OFFICIAL SITE",
+    ctaText: "Start Earning With SurveyJunkie",
     socialProof: "⭐ Trusted by over 20+ million members worldwide. Payouts processed within 24 hours.",
     url: "https://k7xlm.bemobtrcks.com/click/1?ns=c%3Dd6380a30-9c5a-4296-82bf-518555e9938e..l%3D2..a%3D0..b%3D0",
     isPrimary: true,
@@ -67,7 +66,7 @@ const sites = [
     ],
     expertReview:
       "Nielsen isn't your typical survey site -- it's a market research app that pays you passively just for keeping it installed on your devices. You don't need to answer questions or fill out forms. Simply install the app on your phone or computer, and Nielsen collects anonymous usage data in the background. In return, you earn points redeemable for gift cards and get entered into monthly $10,000 sweepstakes. It's the perfect complement to an active survey site like SurveyJunkie.",
-    ctaText: "VISIT OFFICIAL SITE",
+    ctaText: "Download Nielsen & Earn",
     socialProof: "🔒 Backed by a 90-year-old market research giant. 100% safe and secure.",
     url: "https://k7xlm.bemobtrcks.com/click/2?ns=c%3Dd6380a30-9c5a-4296-82bf-518555e9938e..l%3D2..a%3D0..b%3D0",
     isPrimary: false,
@@ -87,7 +86,7 @@ const sites = [
     disadvantages: ["Higher minimum payout threshold ($15)"],
     expertReview:
       "InboxDollars is a fun and engaging platform that pays you real cash -- not points -- for reading emails, watching videos, playing games, and completing surveys. The instant $5 signup bonus is a nice touch that gets you started right away. The only downside is the $15 minimum payout, which means you'll need a bit of patience before your first withdrawal. That said, the variety of earning methods keeps things interesting and makes it easy to hit that threshold faster than you'd expect.",
-    ctaText: "VISIT OFFICIAL SITE",
+    ctaText: "Claim Your $5 Sign-Up Bonus",
     socialProof: "💵 Over $80 million in cash rewards paid to members since 2000.",
     url: "https://k7xlm.bemobtrcks.com/click/3?ns=c%3Dd6380a30-9c5a-4296-82bf-518555e9938e..l%3D2..a%3D0..b%3D0",
     isPrimary: false,
@@ -225,15 +224,6 @@ function SiteCard({ site }: { site: Site }) {
           </div>
         </div>
 
-        <div className="mt-6 sm:mt-8">
-          <h4 className="text-lg sm:text-xl font-bold text-zinc-900 mb-2">
-            Expert Review
-          </h4>
-          <p className="text-sm sm:text-base md:text-lg leading-relaxed text-zinc-700">
-            {site.expertReview}
-          </p>
-        </div>
-
         <div className="mt-6 sm:mt-8 space-y-3">
           <ConversionButton
             url={site.url}
@@ -249,6 +239,15 @@ function SiteCard({ site }: { site: Site }) {
               {site.socialProof}
             </p>
           )}
+        </div>
+
+        <div className="mt-6 sm:mt-8">
+          <h4 className="text-lg sm:text-xl font-bold text-zinc-900 mb-2">
+            Expert Review
+          </h4>
+          <p className="text-sm sm:text-base md:text-lg leading-relaxed text-zinc-700">
+            {site.expertReview}
+          </p>
         </div>
       </div>
     </article>
@@ -350,9 +349,12 @@ export default function Home() {
         </div>
 
         <a
-          id="ranking"
-          href="#ranking"
-          className="rounded-full bg-blue-600 px-4 sm:px-6 py-3 sm:py-4 text-center text-sm sm:text-base md:text-lg font-bold uppercase tracking-wider text-white shadow-lg shadow-blue-200"
+          href="#offer-1"
+          onClick={(e) => {
+            e.preventDefault();
+            document.getElementById('offer-1')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }}
+          className="rounded-full bg-blue-600 px-4 sm:px-6 py-3 sm:py-4 text-center text-sm sm:text-base md:text-lg font-bold uppercase tracking-wider text-white shadow-lg shadow-blue-200 cursor-pointer hover:bg-blue-700 transition inline-block"
         >
           Our Top 3 Paid Survey Sites for 2026
         </a>
@@ -360,8 +362,10 @@ export default function Home() {
 
       {/* Site Cards */}
       <section className="mx-auto flex w-full max-w-5xl flex-col gap-12 sm:gap-16 px-4 pb-12 sm:pb-20 pt-4 sm:pt-6 sm:px-6">
-        {sites.map((site) => (
-          <SiteCard key={site.id} site={site} />
+        {sites.map((site, index) => (
+          <div key={site.id} id={index === 0 ? 'offer-1' : undefined}>
+            <SiteCard site={site} />
+          </div>
         ))}
       </section>
 
