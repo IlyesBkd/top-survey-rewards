@@ -47,11 +47,11 @@ export default function ConversionButton({
       });
     }
 
-    // Track conversion with Google Ads for primary offer
-    if (trackConversion && typeof window !== "undefined" && window.gtag) {
+    // Track conversion with Google Ads for BeMob clicks
+    if (url.includes('bemobtrcks.com') && typeof window !== "undefined" && window.gtag) {
       try {
         window.gtag("event", "conversion", {
-          send_to: "AW-17979730701/2tBNCPLAgIEcEI3Ws_1C",
+          send_to: "AW-17986101954/6M7lCNvQyIMcEMLFuIBD",
           value: 1.0,
           currency: "USD",
         });

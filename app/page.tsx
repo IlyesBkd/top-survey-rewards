@@ -119,10 +119,24 @@ function RatingStars({ rating }: { rating: number }) {
 function SiteCard({ site }: { site: Site }) {
   const posthog = usePostHog();
 
-  const handleImageClick = (offerName: string, e: React.MouseEvent) => {
+  const handleImageClick = (offerName: string, url: string, e: React.MouseEvent) => {
+    // Track image click with PostHog
     posthog.capture('image_clicked', {
       offer_name: offerName,
     });
+
+    // Track conversion with Google Ads for BeMob clicks
+    if (url.includes('bemobtrcks.com') && typeof window !== "undefined" && window.gtag) {
+      try {
+        window.gtag("event", "conversion", {
+          send_to: "AW-17986101954/6M7lCNvQyIMcEMLFuIBD",
+          value: 1.0,
+          currency: "USD",
+        });
+      } catch (error) {
+        console.error("Conversion tracking error:", error);
+      }
+    }
   };
 
   return (
@@ -157,7 +171,7 @@ function SiteCard({ site }: { site: Site }) {
               href={site.url}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={(e) => handleImageClick(site.name.toLowerCase().replace(/\s+/g, ''), e)}
+              onClick={(e) => handleImageClick(site.name.toLowerCase().replace(/\s+/g, ''), site.url, e)}
               className="cursor-pointer"
             >
               <Image
@@ -182,7 +196,7 @@ function SiteCard({ site }: { site: Site }) {
             href={site.url}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={(e) => handleImageClick(site.name.toLowerCase().replace(/\s+/g, ''), e)}
+            onClick={(e) => handleImageClick(site.name.toLowerCase().replace(/\s+/g, ''), site.url, e)}
             className="flex items-center justify-center overflow-hidden rounded-xl md:rounded-2xl border border-zinc-100 shadow-sm bg-zinc-50 p-3 cursor-pointer hover:border-zinc-200 transition"
           >
             <Image

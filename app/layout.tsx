@@ -38,7 +38,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         className={`${bodyFont.variable} ${headingFont.variable} bg-white font-body text-zinc-900 antialiased`}
       >
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-17979730701"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17986101954"
           strategy="afterInteractive"
         />
         <Script id="google-ads-init" strategy="afterInteractive">
@@ -46,7 +46,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'AW-17979730701');
+            gtag('config', 'AW-17986101954');
           `}
         </Script>
         <Script id="bemob-callback" strategy="beforeInteractive">
